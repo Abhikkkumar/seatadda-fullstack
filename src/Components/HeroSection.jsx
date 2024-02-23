@@ -47,7 +47,7 @@ const HeroSection = () => {
   };
 
   const handleDate = (value) => {
-    console.log("handleData executed");
+    // console.log("handleData executed");
     setDate(value);
     setShowCalendar(false);
   };
@@ -91,7 +91,7 @@ const HeroSection = () => {
     <section
       className=" bg-hero  bg-cover bg-center bg-no-repeat"
       onClick={() => {
-        console.log("section clicked");
+        // console.log("section clicked");
         setShowCalendar(false);
       }}
     >
@@ -262,8 +262,8 @@ const HeroSection = () => {
                   // onClick={() => setShowCalendar(!showCalendar)}
                   onClick={(e) => {
                     e.stopPropagation();
-                    console.log("div clicked");
-                    setShowCalendar((a) => !a);
+                    // console.log("div clicked");
+                    setShowCalendar(!showCalendar);
                   }}
                   className="flex flex-shrink relative bg-primarycolors-white rounded-xl md:rounded-none mx-2 items-center md:w-full p-2 my-4 md:my-0 md:border-l-[1px]"
                 >
@@ -302,7 +302,7 @@ const HeroSection = () => {
                           <div
                             onClick={(e) => {
                               // setShowCalendar(false);
-                              console.log("calendar clicked");
+                              // console.log("calendar clicked");
                               e.stopPropagation();
                             }}
                           >
@@ -318,7 +318,7 @@ const HeroSection = () => {
                     {!isSmallDevice && showCalendar && (
                       <div
                         onClick={(e) => {
-                          console.log("calendar clicked");
+                          // console.log("calendar clicked");
                           e.stopPropagation();
                           // setShowCalendar(false);
                         }}
