@@ -102,7 +102,14 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className=" bg-hero  bg-cover bg-center bg-no-repeat">
+    <section
+      className=" bg-hero  bg-cover bg-center bg-no-repeat"
+      onClick={() => {
+        // console.log("section clicked");
+        setShowCalendar1(false);
+        setShowCalendar2(false);
+      }}
+    >
       <div className="backdrop-blur-[0.5px] flex items-center justify-center">
         <div className="flex items-center justify-center text-center ">
           <div className="my-5 lg:p-10">
@@ -282,6 +289,11 @@ const HeroSection = () => {
                   className={`flex flex-shrink relative bg-primarycolors-white rounded-xl  md:rounded-none mx-2 items-center md:w-full p-2 my-4 md:my-0 ${
                     twoWay ? "md:rounded-r-xl" : ""
                   } md:border-l-[1px]`}
+                  onClick={(e) => {
+                    // console.log("div clicked");
+                    e.stopPropagation();
+                    setShowCalendar1((a) => !a);
+                  }}
                 >
                   <BiSolidCalendar
                     className="text-primarycolors-red"
@@ -318,22 +330,37 @@ const HeroSection = () => {
                     {isSmallDevice && showCalendar1 && (
                       <div className="fixed inset-0  bg-black bg-opacity-50 flex items-center justify-center z-10">
                         <div className="bg-white p-4 rounded-lg w-5/6">
-                          <Calendar
-                            value={date}
-                            onChange={handleDate}
-                            minDate={new Date()}
-                          />
+                          <div
+                            onClick={(e) => {
+                              // console.log("cal clicked");
+                              e.stopPropagation();
+                            }}
+                            
+                          >
+                            <Calendar
+                              value={date}
+                              onChange={handleDate}
+                              minDate={new Date()}
+                              
+                            />
+                          </div>
                         </div>
                       </div>
                     )}
 
                     {!isSmallDevice && showCalendar1 && (
-                      <Calendar
-                        className="absolute z-[100]"
-                        value={date}
-                        onChange={handleDate}
-                        minDate={new Date()}
-                      />
+                      <div
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        <Calendar
+                          className="absolute z-[100]"
+                          value={date}
+                          onChange={handleDate}
+                          minDate={new Date()}
+                        />
+                      </div>
                     )}
                   </div>
                   <div className="absolute inset-y-0 right-2 flex items-center">
@@ -351,7 +378,13 @@ const HeroSection = () => {
                   </div>
                 </div>
                 {twoWay && (
-                  <div className="flex flex-shrink relative bg-primarycolors-white rounded-xl md:rounded-l-none mx-2 md:rounded-r-xl md:border-l-[1px]  items-center md:w-full p-2 my-4 md:my-0 ">
+                  <div
+                    className="flex flex-shrink relative bg-primarycolors-white rounded-xl md:rounded-l-none mx-2 md:rounded-r-xl md:border-l-[1px]  items-center md:w-full p-2 my-4 md:my-0 "
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowCalendar2((a) => !a);
+                    }}
+                  >
                     <BiSolidCalendar
                       className="text-primarycolors-red"
                       size={30}
@@ -384,7 +417,12 @@ const HeroSection = () => {
 
                       {isSmallDevice && showCalendar2 && (
                         <div className="fixed inset-0  bg-black bg-opacity-50 flex items-center justify-center z-10">
-                          <div className="bg-white p-4 rounded-lg w-5/6">
+                          <div
+                            className="bg-white p-4 rounded-lg w-5/6"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                            }}
+                          >
                             <Calendar
                               value={return_date}
                               onChange={handleReturnDate}
@@ -395,12 +433,18 @@ const HeroSection = () => {
                       )}
 
                       {!isSmallDevice && showCalendar2 && (
-                        <Calendar
-                          className="absolute z-[100]"
-                          value={return_date}
-                          onChange={handleReturnDate}
-                          minDate={new Date()}
-                        />
+                        <div
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          <Calendar
+                            className="absolute z-[100]"
+                            value={return_date}
+                            onChange={handleReturnDate}
+                            minDate={new Date()}
+                          />
+                        </div>
                       )}
                     </div>
                     <div className="absolute inset-y-0 right-2 flex items-center">
