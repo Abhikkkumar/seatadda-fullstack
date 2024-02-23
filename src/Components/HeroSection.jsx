@@ -47,6 +47,7 @@ const HeroSection = () => {
   };
 
   const handleDate = (value) => {
+    console.log("handleData executed");
     setDate(value);
     setShowCalendar(false);
   };
@@ -87,7 +88,13 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className=" bg-hero  bg-cover bg-center bg-no-repeat">
+    <section
+      className=" bg-hero  bg-cover bg-center bg-no-repeat"
+      onClick={() => {
+        console.log("section clicked");
+        setShowCalendar(false);
+      }}
+    >
       <div className="backdrop-blur-[0.5px] flex items-center justify-center">
         <div className="flex items-center justify-center text-center ">
           <div className="my-5 sm:p-10">
@@ -199,7 +206,6 @@ const HeroSection = () => {
                             <li
                               key={route.city}
                               className="cursor-pointer py-1 pl-5 hover:bg-primarycolors-red/50"
-
                               onClick={() => {
                                 setToLocation(route.city);
                                 setShowToRoutes(false);
@@ -254,6 +260,11 @@ const HeroSection = () => {
                                 </div> */}
                 <div
                   // onClick={() => setShowCalendar(!showCalendar)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    console.log("div clicked");
+                    setShowCalendar((a) => !a);
+                  }}
                   className="flex flex-shrink relative bg-primarycolors-white rounded-xl md:rounded-none mx-2 items-center md:w-full p-2 my-4 md:my-0 md:border-l-[1px]"
                 >
                   <BiSolidCalendar
@@ -278,7 +289,9 @@ const HeroSection = () => {
                     {isSmallDevice && (
                       <button
                         className="w-auto outline-none mt-2"
-                        onClick={() => setShowCalendar(true)}
+                        // onClick={() => {
+                        //   setShowCalendar(true);
+                        // }}
                       >
                         {date.toLocaleDateString("en-GB")}
                       </button>
@@ -286,21 +299,38 @@ const HeroSection = () => {
                     {isSmallDevice && showCalendar && (
                       <div className="fixed inset-0  bg-black bg-opacity-50 flex items-center justify-center z-10">
                         <div className="bg-white p-4 rounded-lg w-5/6">
-                          <Calendar
-                            // value={date}
-                            onChange={handleDate}
-                            minDate={new Date()}
-                          />
+                          <div
+                            onClick={(e) => {
+                              // setShowCalendar(false);
+                              console.log("calendar clicked");
+                              e.stopPropagation();
+                            }}
+                          >
+                            <Calendar
+                              // value={date}
+                              onChange={handleDate}
+                              minDate={new Date()}
+                            />
+                          </div>
                         </div>
                       </div>
                     )}
                     {!isSmallDevice && showCalendar && (
-                      <Calendar
-                        className="absolute z-[100]"
-                        // value={date}
-                        onChange={handleDate}
-                        minDate={new Date()}
-                      />
+                      <div
+                        onClick={(e) => {
+                          console.log("calendar clicked");
+                          e.stopPropagation();
+                          // setShowCalendar(false);
+                        }}
+                      >
+                        <Calendar
+                          className="absolute z-[100]"
+                          // value={date}
+
+                          onChange={handleDate}
+                          minDate={new Date()}
+                        />
+                      </div>
                     )}
                   </button>
                 </div>
