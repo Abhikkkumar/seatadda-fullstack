@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   BiSolidMap,
@@ -34,7 +34,6 @@ const Header = ({ setIsCalender }) => {
  
    const currdate = dayjs(dateStr).format('DD/MM/YYYY') */
 
-
   // console.log(isoString);
   const [routes, setRoutes] = useState([]);
   const [date, setDate] = useState(new Date());
@@ -60,7 +59,6 @@ const Header = ({ setIsCalender }) => {
   };
 
   const handleDate = (value) => {
-
     setDate(value);
     setShowCalendar(false);
     setIsCalender(false);
@@ -80,14 +78,16 @@ const Header = ({ setIsCalender }) => {
   const hanldeIsCalender = () => {
     setShowCalendar(true);
     setIsCalender(true);
-  }
+  };
 
   useEffect(() => {
     async function fetchRoutes() {
       try {
-        const response = await fetch('https://seatadda.co.in/api/source-destination');
+        const response = await fetch(
+          "https://seatadda.co.in/api/source-destination"
+        );
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
 
         const data = await response.json();
@@ -95,14 +95,20 @@ const Header = ({ setIsCalender }) => {
         setRoutes(data.date);
         setfilterRoutes(data.date);
       } catch (error) {
-        console.error('Error fetching routes:', error);
+        console.error("Error fetching routes:", error);
       }
     }
     fetchRoutes();
   }, []);
 
   return (
-    <section className=" bg-hero  bg-cover bg-center bg-no-repeat ">
+    <section
+      className=" bg-hero  bg-cover bg-center bg-no-repeat "
+      onClick={() => {
+        console.log("section clicked");
+        setShowCalendar(false);
+      }}
+    >
       <div className="backdrop-blur-[0.5px] flex items-center justify-center">
         <div className="flex items-center justify-center text-center ">
           <div className="my-1 sm:p-1">
@@ -129,12 +135,11 @@ const Header = ({ setIsCalender }) => {
                       filterBySearch(e);
                       setFromLocation(e.target.value);
                       setShowFromRoutes(true);
-
                     }}
                     onFocus={() => {
                       setShowFromRoutes(true);
                       setShowToRoutes(false);
-                      setIsCalender(true)
+                      setIsCalender(true);
                     }}
                   />
                   {showFromRoutes && (
@@ -148,10 +153,10 @@ const Header = ({ setIsCalender }) => {
                               onClick={() => {
                                 setFromLocation(route.city);
                                 setShowFromRoutes(false);
-                                setIsCalender(false)
+                                setIsCalender(false);
                               }}
                             >
-                               <div className=" flex gap-4 justify-start items-center ">
+                              <div className=" flex gap-4 justify-start items-center ">
                                 <div>
                                   <MdLocationCity
                                     size={20}
@@ -167,7 +172,8 @@ const Header = ({ setIsCalender }) => {
                               </div>
                             </li>
                           ))}
-                        </ul></div>
+                        </ul>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -198,9 +204,9 @@ const Header = ({ setIsCalender }) => {
                     onFocus={() => {
                       setShowToRoutes(true);
                       setShowFromRoutes(false);
-                      setIsCalender(true)
+                      setIsCalender(true);
                     }}
-                  // onBlur={() => setShowFromRoutes(false)}
+                    // onBlur={() => setShowFromRoutes(false)}
                   />{" "}
                   {showToRoutes && (
                     <div className="absolute w-full rounded-lg top-[41px] overflow-hidden ml-[4px]">
@@ -213,10 +219,10 @@ const Header = ({ setIsCalender }) => {
                               onClick={() => {
                                 setToLocation(route.city);
                                 setShowToRoutes(false);
-                                setIsCalender(false)
+                                setIsCalender(false);
                               }}
                             >
-                               <div className=" flex gap-4 justify-start items-center ">
+                              <div className=" flex gap-4 justify-start items-center ">
                                 <div>
                                   <MdLocationCity
                                     size={20}
@@ -232,7 +238,6 @@ const Header = ({ setIsCalender }) => {
                               </div>
                             </li>
                           ))}
-
                         </ul>
                       </div>
                     </div>
@@ -266,6 +271,11 @@ const Header = ({ setIsCalender }) => {
                 </div> */}
                 <div
                   /*  onClick={() => setShowCalendar(!showCalendar)} */
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    console.log("div clicked");
+                    setShowCalendar(!showCalendar);
+                  }}
                   className="flex flex-shrink relative bg-primarycolors-white rounded-xl md:rounded-none mx-2 items-center md:w-full p-2 my-4 md:my-0 md:border-l-[1px]"
                 >
                   <BiSolidCalendar
@@ -283,8 +293,7 @@ const Header = ({ setIsCalender }) => {
                       <input
                         id=""
                         className="w-auto outline-none mt-2"
-                        value={date.toLocaleDateString('en-GB')}
-
+                        value={date.toLocaleDateString("en-GB")}
                         onFocus={hanldeIsCalender}
                       />
                     )}
@@ -293,38 +302,54 @@ const Header = ({ setIsCalender }) => {
                         className="w-auto outline-none mt-2"
                         onClick={() => setShowCalendar(true)}
                       >
-                        {date.toLocaleDateString('en-GB')}
+                        {date.toLocaleDateString("en-GB")}
                       </button>
                     )}
                     {isSmallDevice && showCalendar && (
                       <div className="fixed inset-0 z-10  bg-black bg-opacity-50 flex items-center justify-center ">
-                        <div className="bg-white p-4 rounded-lg w-5/6">
-                          <Calendar
-                            // value={date}
-                            onChange={handleDate}
-                            minDate={new Date()}
-                          />
+                        <div className="bg-white  rounded-lg max-w-[400px]">
+                          <div
+                            onClick={(e) => {
+                              // setShowCalendar(false);
+                              console.log("calendar clicked");
+                              e.stopPropagation();
+                            }}
+                            className="w-full"
+                          >
+                            <Calendar
+                              // value={date}
+                              onChange={handleDate}
+                              minDate={new Date()}
+                              className="max-w-[350px]"
+                            />
+                          </div>
                         </div>
                       </div>
                     )}
                     {!isSmallDevice && showCalendar && (
-                      <Calendar
-
-                        className="absolute"
-
-                        onChange={handleDate}
-                        minDate={new Date()}
-                      />
+                      <div
+                        onClick={(e) => {
+                          // setShowCalendar(false);
+                          // console.log("calendar clicked");
+                          e.stopPropagation();
+                        }}
+                      >
+                        <Calendar
+                          className="absolute"
+                          onChange={handleDate}
+                          minDate={new Date()}
+                        />
+                      </div>
                     )}
                   </button>
                 </div>
               </div>
-              <div onClick={handleSearch} className="md:flex mb-2 bg-primarycolors-red rounded-xl md:rounded-none md:rounded-r-xl">
+              <div
+                onClick={handleSearch}
+                className="md:flex mb-2 bg-primarycolors-red rounded-xl md:rounded-none md:rounded-r-xl"
+              >
                 <div className="md:w-full p-2 mb-6 md:mb-0">
-                  <button
-
-                    className="py-1 px-3 mx-5 text-primarycolors-white text-lg"
-                  >
+                  <button className="py-1 px-3 mx-5 text-primarycolors-white text-lg">
                     Modify
                   </button>
                 </div>
