@@ -387,7 +387,7 @@ const BusBox = ({
             <div className="w-full">
               <div className=" border-b-[0.5px] border-primarycolors-gray">
                 <div className=" p-4 flex gap-4 justify-between">
-                  <div className=" w-[200px]">
+                  <div className=" w-[170px]">
                     <h1 className="font-bold text-md text-left ">
                       {travels_name}
                     </h1>
@@ -400,21 +400,22 @@ const BusBox = ({
                       Bus No: {reg_no}
                     </p>
                   </div>
-                  <div className=" flex gap-5 justify-between items-center pr-2">
-                    <div className="text-left w-[150px]">
+                  <div className=" flex gap-3 justify-between items-center pr-2">
+                    <div className="text-left w-[100px]">
                       {via_route.length > 0 && (
                         <>
                           {sourceDate != null && (
-                            <p className="  text-[12px]">{formatDate(sourceDate)}</p>
+                            <p className="  text-[12px]">
+                              {formatDate(sourceDate)}
+                            </p>
                           )}
 
-                          
                           <p className=" font-bold">{sourceTime}</p>
                           <p className="text-[12px]">{departure}</p>
                         </>
                       )}
                     </div>
-                    <div>
+                    <div className="w-[120px]">
                       {via_route.length > 0 && (
                         <>
                           {" "}
@@ -426,7 +427,7 @@ const BusBox = ({
                         </>
                       )}
                     </div>
-                    <div className=" w-[150px] text-right">
+                    <div className=" w-[100px] text-right">
                       {via_route.length > 0 && (
                         <>
                           {destinationDate != null && (
@@ -434,7 +435,7 @@ const BusBox = ({
                               {formatDate(destinationDate)}
                             </p>
                           )}
-                         
+
                           <p className=" font-bold">{destinationTime}</p>
                           <p className="text-[12px]">{arrival}</p>
                         </>
@@ -930,15 +931,15 @@ const BusBox = ({
                     </p>
                   </div>
                 </div>
-                <div className=" flex  justify-between items-center  w-fit gap-3">
-                  <div className="text-left w-fit">
+                <div className=" flex  justify-between items-center  w-max gap-3">
+                  <div className="text-left w-fit sm:w-max">
                     {via_route.length > 0 && (
                       <>
                         <p className=" text-lg font-bold">{sourceTime}</p>
                       </>
                     )}
                   </div>
-                  <div className=" w-full">
+                  <div className=" w-fit sm:w-max">
                     {via_route.length > 0 && (
                       <div className=" flex items-center justify-center text-primarycolors-textcolor">
                         {/* <GoDotFill className=" text-xs text-primarycolors-textcolor " /> */}
@@ -951,7 +952,7 @@ const BusBox = ({
                       </div>
                     )}
                   </div>
-                  <div className=" w-fit text-right">
+                  <div className=" w-fit sm:w-max text-right">
                     {via_route.length > 0 && (
                       <>
                         <p className=" font-bold text-lg">{destinationTime}</p>
