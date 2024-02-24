@@ -311,9 +311,9 @@ const Right = ({ setIsModalOpen, isCal }) => {
 
       {isSuccess && (
         <>
-          <div className=" md:hidden pt-4 px-4 z-0">
+          <div className=" md:hidden pt-4 px-4 z-[-3]" onClick={()=>{console.log("clicked")}}>
             <Swiper
-              className=""
+              className="z-0"
               modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={10}
               slidesPerView={1.5}
@@ -321,24 +321,24 @@ const Right = ({ setIsModalOpen, isCal }) => {
               /*  onSlideChange={() => console.log('slide change')}
            onSwiper={(swiper) => console.log(swiper)} */
             >
-              <SwiperSlide>
+              <SwiperSlide className="">
                 {" "}
                 <OfferCardMob image="https://static.abhibus.com/busgallery/offerbanners/Dec2022/30/1672393950/476X220.webp" />{" "}
               </SwiperSlide>
 
-              <SwiperSlide>
+              <SwiperSlide className="">
                 {" "}
                 <OfferCardMob image="https://static.abhibus.com/busgallery/offerbanners/Dec2022/30/1672393950/476X220.webp" />{" "}
               </SwiperSlide>
-              <SwiperSlide>
+              <SwiperSlide className="">
                 {" "}
                 <OfferCardMob image="https://static.abhibus.com/busgallery/offerbanners/Dec2022/30/1672393950/476X220.webp" />{" "}
               </SwiperSlide>
-              <SwiperSlide>
+              <SwiperSlide className="">
                 {" "}
                 <OfferCardMob image="https://static.abhibus.com/busgallery/offerbanners/Dec2022/30/1672393950/476X220.webp" />{" "}
               </SwiperSlide>
-              <SwiperSlide>
+              <SwiperSlide className="">
                 {" "}
                 <OfferCardMob image="https://static.abhibus.com/busgallery/offerbanners/Dec2022/30/1672393950/476X220.webp" />{" "}
               </SwiperSlide>

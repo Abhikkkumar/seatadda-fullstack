@@ -195,7 +195,7 @@ const SelectBus = () => {
 
           <div className="">
             {/* <Toaster /> */}
-            <div className="fixed md:hidden bg-primarycolors-textcolor shadow-lg  rounded-md bottom-2 left-2 right-2 ">
+            <div className="fixed md:hidden bg-primarycolors-textcolor shadow-lg  rounded-md bottom-2 left-2 right-2  z-5">
               <div className="flex justify-between  ">
                 {/* Left Scrollable Column */}
                 <div

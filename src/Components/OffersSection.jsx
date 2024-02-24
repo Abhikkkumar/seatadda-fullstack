@@ -60,7 +60,7 @@ const OffersSection = () => {
 
         <div className="slider m-3 ">
           <Swiper
-            style={{ zIndex: "inherit" }}
+            style={{ zIndex: "1" }}
             className=""
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={50}

@@ -334,8 +334,9 @@ const HeroSection = () => {
                             onClick={(e) => {
                               // console.log("cal clicked");
                               e.stopPropagation();
+                              
                             }}
-                            
+                            className="smallScreen"
                           >
                             <Calendar
                               value={date}
@@ -353,6 +354,7 @@ const HeroSection = () => {
                         onClick={(e) => {
                           e.stopPropagation();
                         }}
+                        className="wideScreen"
                       >
                         <Calendar
                           className="absolute z-[100]"
@@ -422,6 +424,7 @@ const HeroSection = () => {
                             onClick={(e) => {
                               e.stopPropagation();
                             }}
+                            className="smallScreen"
                           >
                             <Calendar
                               value={return_date}
@@ -437,6 +440,7 @@ const HeroSection = () => {
                           onClick={(e) => {
                             e.stopPropagation();
                           }}
+                          className="wideScreen"
                         >
                           <Calendar
                             className="absolute z-[100]"

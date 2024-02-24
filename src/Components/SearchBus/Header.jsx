@@ -307,22 +307,20 @@ const Header = ({ setIsCalender }) => {
                     )}
                     {isSmallDevice && showCalendar && (
                       <div className="fixed inset-0 z-10  bg-black bg-opacity-50 flex items-center justify-center ">
-                        <div className="bg-white  rounded-lg max-w-[400px]">
-                          <div
-                            onClick={(e) => {
-                              // setShowCalendar(false);
-                              // console.log("calendar clicked");
-                              e.stopPropagation();
-                            }}
-                            className="w-full"
-                          >
-                            <Calendar
-                              // value={date}
-                              onChange={handleDate}
-                              minDate={new Date()}
-                              className="max-w-[350px]"
-                            />
-                          </div>
+                        <div
+                          className="bg-white p-4  rounded-lg w-5/6 smallScreen"
+                          // i have added 'smallScreen' class to show it only on small screen. mediaQuery is in App.css
+                          onClick={(e) => {
+                            // console.log("calendar clicked");
+                            e.stopPropagation();
+                          }}
+                        >
+                          <Calendar
+                            // value={date}
+                            onChange={handleDate}
+                            minDate={new Date()}
+                            
+                          />
                         </div>
                       </div>
                     )}
@@ -333,9 +331,11 @@ const Header = ({ setIsCalender }) => {
                           // console.log("calendar clicked");
                           e.stopPropagation();
                         }}
+                        // i have added 'wideScreen' class to show it only on wideScreen
+                        className="wideScreen"
                       >
                         <Calendar
-                          className="absolute"
+                          className="absolute z-[100]"
                           onChange={handleDate}
                           minDate={new Date()}
                         />
